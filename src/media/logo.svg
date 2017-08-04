@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="80px" height="27px" viewBox="0 0 80 27" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 43.2 (39069) - http://www.bohemiancoding.com/sketch -->
+    <title>Group</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Artboard" transform="translate(-27.000000, -25.000000)">
+            <g id="Group" transform="translate(27.000000, 21.000000)">
+                <path d="M0,9.99706188 C0,6.68497606 2.68662575,4 5.99706188,4 L16.0029381,4 C19.3150239,4 22,6.68023604 22,10.0030977 L22,30.4230833 C22,30.980256 21.60687,31.2013009 21.1383739,30.9270396 C21.1383739,30.9270396 13.4204604,26.3887445 12.3976142,26 C11.374768,25.6112555 5.97204627,25.8517041 5.97204627,25.8517041 C2.67377619,25.9336057 0,23.3133742 0,20.0029381 L0,9.99706188 Z" id="Rectangle" fill="#3DB0E1"></path>
+                <text id="Simplr" font-family="AvenirNext-Bold, Avenir Next" font-size="23" font-weight="bold" letter-spacing="-1.16">
+                    <tspan x="12" y="23" fill="#FFFFFF">S</tspan>
+                    <tspan x="24.433" y="23" font-size="22" letter-spacing="-0.356190473" fill="#203770">implr</tspan>
+                </text>
+            </g>
+        </g>
+    </g>
+</svg>
