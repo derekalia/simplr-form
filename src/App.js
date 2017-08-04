@@ -38,9 +38,10 @@ export default class App extends Component {
     this.setState({ type: obj.value });
   }
 
-  runChecks = () => {
+  runChecks = () => {    
     const errors = {}
-// name
+    this.setState({errors:{}})
+    // name
     if(this.state.name.length === 0){
       errors.name = "Please enter a business name"
     }
@@ -50,9 +51,9 @@ export default class App extends Component {
     }
     // username
     if(this.state.username.length === 0){
-      errors.name = "Please enter a username"
+      errors.username = "Please enter a username"
     }
-// password
+    // password
     if(this.state.password.length < 6){
       errors.password = "Password should have six characters"
     }
@@ -67,7 +68,7 @@ export default class App extends Component {
     } 
     
     if(this.state.type.length === 0){
-      errors.name = "Please select a type of business"
+      errors.type = "Please select a type of business"
     }
     if(!this.state.checkedOne){
       errors.checkedOne = "Please check Terms of Service"
@@ -86,7 +87,7 @@ export default class App extends Component {
         <div>LET’S GET STARTED</div>
         <FormField 
         title="Business Name" 
-        error="" 
+        error={this.state.errors}
         setValue={this.setValue}        
         value={this.state.name} 
         field='name'
@@ -95,7 +96,7 @@ export default class App extends Component {
         />        
         <FormField 
         title="Business Email" 
-        error="" 
+        error={this.state.errors}
         setValue={this.setValue} 
         field='email'
         value={this.state.email} 
@@ -104,7 +105,7 @@ export default class App extends Component {
         />
         <FormField 
         title="Create a Username" 
-        error="" 
+        error={this.state.errors}
         setValue={this.setValue} 
         field='username'
         value={this.state.username} 
@@ -114,7 +115,7 @@ export default class App extends Component {
         <FormField 
         title="Password" 
         subtitle="6 characters | 1 uppercase | 1 lowercase | 1 digit" 
-        error="" 
+        error={this.state.errors}
         setValue={this.setValue} 
         field='password'
         value={this.state.password} 
@@ -123,21 +124,16 @@ export default class App extends Component {
         />
         <FormField 
         title="Website" subtitle="(Optional)" 
-        error="" 
+        error={this.state.errors}
         setValue={this.setValue} 
         field='website'
         value={this.state.website} 
         placeholder="Enter website"
         inputType="text"
-        />
-        {/* <FormField 
-        title="Type of Business"  
-        setValue={this.setType} 
-        value={this.state.type} 
-        placeholder="Enter type"        
-        /> */}
-       
-        <Select
+        />       
+        <div>Type of Business</div>         
+        <Select style={{borderRadius:'0px'}}
+          error={this.state.errors}
           name="form-field-name"
           value={this.state.type}
           options={this.state.options}
@@ -145,8 +141,8 @@ export default class App extends Component {
           placeholder="Select your business"
         />
 
-        <CheckedInput checked={this.state.checkedOne} setCheck={this.setCheck} checkNum='checkedOne'/>
-        <CheckedInput checked={this.state.checkedTwo} setCheck={this.setCheck} checkNum='checkedTwo' />
+        <CheckedInput checked={this.state.checkedOne} setCheck={this.setCheck} checkNum='checkedOne' error={this.state.errors}/>
+        <CheckedInput checked={this.state.checkedTwo} setCheck={this.setCheck} checkNum='checkedTwo' error={this.state.errors}/>
 
 
       <button onClick={this.runChecks}>REGISTER</button>
