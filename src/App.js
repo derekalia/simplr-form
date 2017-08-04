@@ -4,12 +4,7 @@ import FormField from './components/FormField';
 import Select from 'react-select';
 import CheckedInput from './components/CheckedInput';
 import 'react-select/dist/react-select.css';
-import styled from 'styled-components'
-
-
-
-
-
+import styled from 'styled-components';
 
 export default class App extends Component {
   state = {
@@ -77,12 +72,12 @@ export default class App extends Component {
     } else if (!/[a-z]/.test(this.state.password)) {
       errors.password = 'Password should have a capital letter';
     }
-    
+
     // biz type
     if (this.state.type.length === 0) {
       errors.type = 'Please select a type of business';
     }
-    
+
     // checkboxes
     if (!this.state.checkedOne) {
       errors.checkedOne = 'Please check Terms of Service';
@@ -90,16 +85,13 @@ export default class App extends Component {
     if (!this.state.checkedTwo) {
       errors.checkedTwo = 'Please check Privacy Policy';
     }
-    
+
     this.setState({ errors });
 
-    if(Object.keys(errors).length === 0){
-      alert('Registration successful!')
+    if (Object.keys(errors).length === 0) {
+      alert('Registration successful!');
     }
-    
   };
-
-
 
   render() {
     return (
@@ -107,20 +99,12 @@ export default class App extends Component {
         <LogoContainer>
           <img style={{ width: '130px' }} src={logo} />
         </LogoContainer>
-        <div
-          style={{
-            flex: 1,
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            marginTop: '60px',
-            marginBottom: '60px'
-          }}
-        >
-          <div style={{ flex: 1, marginBottom: '25px' }}>
-            <div style={{ color: '#46B2E2', fontSize: '46px',fontWeight:'300' }}>LET’S GET STARTED</div>
-          </div>
-          <div style={{ margin: '5px' }}>
+
+        <FormContainer>
+
+          <Title>LET’S GET STARTED</Title>
+
+          <FormItem>
             <FormField
               title="Business Name"
               error={this.state.errors}
@@ -130,8 +114,9 @@ export default class App extends Component {
               placeholder="Enter name"
               inputType="text"
             />
-          </div>
-          <div style={{ margin: '5px' }}>
+          </FormItem>
+
+          <FormItem>
             <FormField
               title="Business Email"
               error={this.state.errors}
@@ -141,8 +126,9 @@ export default class App extends Component {
               placeholder="Enter email"
               inputType="text"
             />
-          </div>
-          <div style={{ margin: '5px' }}>
+          </FormItem>
+
+          <FormItem>
             <FormField
               title="Create a Username"
               error={this.state.errors}
@@ -152,8 +138,9 @@ export default class App extends Component {
               placeholder="Enter username"
               inputType="text"
             />
-          </div>
-          <div style={{ margin: '5px' }}>
+          </FormItem>
+
+          <FormItem>
             <FormField
               title="Password"
               subtitle="6 characters | 1 uppercase | 1 lowercase | 1 digit"
@@ -164,8 +151,9 @@ export default class App extends Component {
               placeholder="Enter password"
               inputType="password"
             />
-          </div>
-          <div style={{ margin: '5px' }}>
+          </FormItem>
+
+          <FormItem>
             <FormField
               title="Website"
               subtitle="(Optional)"
@@ -176,19 +164,14 @@ export default class App extends Component {
               placeholder="Enter website"
               inputType="text"
             />
-          </div>
-          <div style={{ margin: '5px' }}>
-            <div style={{ display: 'flex', flexDirection: 'row', marginBottom: '2px', alignItems: 'center' }}>
-              <div style={{ fontSize: '20px', color: '#363636' }}>Type of Business</div>
-            </div>
+          </FormItem>
 
-            <Select
-              style={{
-                border: !this.state.errors.type ? 'solid 1.5px #C9C9C9' : 'solid 1.5px #FF3D37',
-                borderRadius: '0px',
-                width: '455px',
-                fontSize: '20px'
-              }}
+          <FormItem>
+            <InputHeader>
+              <InputTitle> Type of Business</InputTitle>
+            </InputHeader>
+
+            <SelectStyled
               error={this.state.errors}
               name="form-field-name"
               value={this.state.type}
@@ -196,13 +179,13 @@ export default class App extends Component {
               onChange={this.setType}
               placeholder="Select your business"
             />
-            <div style={{ color: 'red', marginTop: '3px', fontSize: '16px',fontWeight:'300' }}>               
+            <Error>
               {this.state.errors.type ? this.state.errors.type : <div>&nbsp;</div>}
-            </div>
-          </div>
+            </Error>
+          </FormItem>
 
-          <div style={{ marginTop: '20px' }}>
-            <div style={{ marginTop: '5px' }}>
+          <CheckboxContainer>
+            <FormItem>
               <CheckedInput
                 checked={this.state.checkedOne}
                 setCheck={this.setCheck}
@@ -210,11 +193,11 @@ export default class App extends Component {
                 error={this.state.errors}
                 title="Terms of Service"
               />
-              <div style={{ color: 'red', marginTop: '3px', fontSize: '16px',fontWeight:'300' }}>               
-              {this.state.errors.checkedOne ? this.state.errors.checkedOne : <div>&nbsp;</div>}              
-            </div>
-            </div>
-            <div style={{ marginTop: '5px' }}>
+              <Error>
+                {this.state.errors.checkedOne ? this.state.errors.checkedOne : <div>&nbsp;</div>}
+              </Error>
+            </FormItem>
+            <FormItem>
               <CheckedInput
                 checked={this.state.checkedTwo}
                 setCheck={this.setCheck}
@@ -222,42 +205,29 @@ export default class App extends Component {
                 error={this.state.errors}
                 title="Privacy Policy"
               />
-              <div style={{ color: 'red', marginTop: '3px', fontSize: '16px',fontWeight:'300' }}>                             
-              {this.state.errors.checkedTwo ? this.state.errors.checkedTwo : <div>&nbsp;</div>}
-            </div>
-            </div>            
-          </div>
+              <Error>
+                {this.state.errors.checkedTwo ? this.state.errors.checkedTwo : <div>&nbsp;</div>}
+              </Error>
+            </FormItem>
+          </CheckboxContainer>
 
           <div style={{ marginTop: '50px' }}>
-            <button
-              style={{
-                width: '160px',
-                height: '50px',
-                fontSize: '20px',
-                backgroundColor: '#3DB0E1',
-                color: 'white',
-                border: 'none'
-              }}
-              onClick={this.runChecks}
-            >
+            <RegistrationButton onClick={this.runChecks}>
               REGISTER
-            </button>
+            </RegistrationButton>
           </div>
-        </div>
-
-        <div style={{ flex: 1 }} />
+        </FormContainer>
       </AppContainer>
     );
   }
 }
 
-
 const AppContainer = styled.div`
 display: flex; 
 flex-direction: column; 
 align-items: center;
-fontFamily: Lato;
-`
+fontFamily: 'Lato';
+`;
 
 const LogoContainer = styled.div`
 flex: 1;
@@ -267,4 +237,58 @@ margin-top: 20px;
 @media (max-width: 700px) {
 		align-self: center;
 	}
+`;
+
+const FormContainer = styled.div`
+flex: 1;
+display: flex;
+flex-direction: column;
+align-items: center;    
+margin-bottom: 5vh;
+`;
+
+const Title = styled.div`
+color: #46B2E2; 
+font-size: 46px;
+font-weight:300;
+margin-bottom: 25px;
+`;
+
+const FormItem = styled.div`
+  margin: 5px;
+`;
+
+export const InputHeader = styled.div`
+  display: flex; flex-direction: row; margin-bottom: 2px; align-items: center;
+`;
+export const InputTitle = styled.div`
+  font-size: 20px;color: #363636;
+`;
+
+export const InputSubtitle = styled.div`
+  font-size: 15px; color: #A9A9A9; margin-left: 5px;
+`;
+
+const SelectStyled = styled(Select)`
+  border: !this.state.errors.type ? solid 1.5px #C9C9C9 : solid 1.5px #FF3D37;
+  border-radius: 0px;
+  width: 455px;
+  font-size: 20px;
+`;
+
+export const Error = styled.div`
+  color: red; margin-top: 3px; font-size: 16px; font-weight: 300;
+`;
+
+const CheckboxContainer = styled.div`
+  margin-top:25px;
+`;
+
+const RegistrationButton = styled.button`
+  width: 160px;
+  height: 50px;
+  font-size: 20px;
+  background-color: #3DB0E1;
+  color: white;
+  border: none;
 `;

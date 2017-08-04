@@ -1,36 +1,40 @@
 import React, { Component } from 'react';
+import { Error, InputHeader, InputTitle, InputSubtitle } from '../App';
+import styled from 'styled-components';
 
 export default class FormField extends Component {
-  render() {    
+  render() {
     return (
       <div>
-        <label>
-          <div style={{ display: 'flex', flexDirection: 'row', marginBottom: '2px', alignItems: 'center' }}>
-            <div style={{ fontSize: '20px', color: '#363636' }}>{this.props.title}</div>
-            <div style={{ fontSize: '15px', color: '#A9A9A9', marginLeft: '5px' }}>{this.props.subtitle}</div>
-          </div>
-          <div>
-            <input
-              style={{
-                paddingLeft: '8px',
-                width: '440px',
-                height: '40px',
-                fontSize: '20px',
-                backgroundColor: '#F2F2F2',
-                color: '#363636',
-                border: this.props.error[this.props.field] ? 'solid 1.5px #FF3D37' : 'solid 1.5px #C9C9C9'
-              }}
-              type={this.props.inputType}
-              placeholder={this.props.placeholder}
-              value={this.props.value}
-              onChange={e => this.props.setValue(e, this.props.field)}
-            />
-          </div>
-          <div style={{ color: 'red', marginTop: '3px', fontSize: '16px',fontWeight:'300' }}>
+          
+          <InputHeader>
+            <InputTitle>{this.props.title}</InputTitle>
+            <InputSubtitle>{this.props.subtitle}</InputSubtitle>
+          </InputHeader>
+          
+          <Input
+            error={this.props.error}
+            field={this.props.field}
+            type={this.props.inputType}
+            placeholder={this.props.placeholder}
+            value={this.props.value}
+            onChange={e => this.props.setValue(e, this.props.field)}
+          />
+
+          <Error>
             {this.props.error[this.props.field] ? this.props.error[this.props.field] : <div>&nbsp;</div>}
-          </div>
-        </label>
+          </Error>        
       </div>
     );
   }
 }
+
+const Input = styled.input`
+padding-left: 8px;
+width: 30vw;
+height: 2.7vw;
+font-size: 20px;
+background-color: #F2F2F2;
+color: #363636;
+border: ${props => (props.error[props.field] ? 'solid 1.5px #FF3D37' : 'solid 1.5px #C9C9C9')}
+`;
