@@ -179,7 +179,7 @@ export default class App extends Component {
               field='type'
               placeholder="Select your business"
             />
-                         
+
             <Error>
               {this.state.errors.type ? this.state.errors.type : <div>&nbsp;</div>}
             </Error>
@@ -295,6 +295,7 @@ export const InputSubtitle = styled.div`
 const SelectStyled = styled(Select)`
   border-radius: 0px;  
   border: ${props => (props.error[props.field] ? 'solid 1.5px #FF3D37' : 'solid 1.5px #C9C9C9')};    
+  background-color:white;
   width: 36vw;
   font-size: 20px;
   @media (max-width: 600px) {
