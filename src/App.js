@@ -318,8 +318,9 @@ const CheckboxContainer = styled.div`
 `;
 
 const RegistrationButton = styled.button`
-  width: 160px;
-  height: 50px;
+  width: 170px;
+  height: 60px;
+  letter-spacing: 2px;
   font-size: 20px;
   background-color: #3DB0E1;
   color: white;
