@@ -5,6 +5,8 @@ import Select from 'react-select';
 import CheckedInput from './components/CheckedInput';
 import 'react-select/dist/react-select.css';
 import styled from 'styled-components';
+import Confetti from 'react-dom-confetti';
+
 
 export default class App extends Component {
   state = {
@@ -25,7 +27,8 @@ export default class App extends Component {
     ],
     checkedOne: false,
     checkedTwo: false,
-    errors: {}
+    errors: {},
+    done:false
   };
 
   setValue = (e, field) => {
@@ -88,12 +91,25 @@ export default class App extends Component {
 
     this.setState({ errors });
 
-    if (Object.keys(errors).length === 0) {
+    if (Object.keys(errors).length === 0) {      
+     this.setState({ done:true }); 
       alert('Registration successful!');
+      
     }
+    
+      
   };
 
   render() {
+
+    const config = {
+  angle: 90,
+  spread: 124,
+  startVelocity: 11,
+  elementCount: 86,
+  decay: 0.98
+};
+
     return (
       <AppContainer>
         <LogoContainer>
@@ -213,7 +229,9 @@ export default class App extends Component {
           </CheckboxContainer>
 
           <div style={{ marginTop: '50px' }}>
+           
             <RegistrationButton onClick={this.runChecks}>
+               <Confetti active={this.state.done} config={ config }/>
               REGISTER
             </RegistrationButton>
           </div>
