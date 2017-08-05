@@ -97,7 +97,7 @@ export default class App extends Component {
     return (
       <AppContainer>
         <LogoContainer>
-          <img style={{ width: '130px' }} src={logo} />
+          <Logo src={logo} />
         </LogoContainer>
 
         <FormContainer>
@@ -171,14 +171,15 @@ export default class App extends Component {
               <InputTitle> Type of Business</InputTitle>
             </InputHeader>
 
-            <SelectStyled
-              error={this.state.errors}
-              name="form-field-name"
+            <SelectStyled          
+              error={this.state.errors}              
               value={this.state.type}
               options={this.state.options}
               onChange={this.setType}
+              field='type'
               placeholder="Select your business"
             />
+                         
             <Error>
               {this.state.errors.type ? this.state.errors.type : <div>&nbsp;</div>}
             </Error>
@@ -239,6 +240,11 @@ margin-top: 20px;
 	}
 `;
 
+const Logo = styled.img`
+width: 25vh;
+// width: 130px;
+`
+
 const FormContainer = styled.div`
 flex: 1;
 display: flex;
@@ -252,6 +258,9 @@ color: #46B2E2;
 font-size: 46px;
 font-weight:300;
 margin-bottom: 25px;
+@media (max-width: 600px) {
+		font-size:8vw;
+	}
 `;
 
 const FormItem = styled.div`
@@ -259,21 +268,38 @@ const FormItem = styled.div`
 `;
 
 export const InputHeader = styled.div`
-  display: flex; flex-direction: row; margin-bottom: 2px; align-items: center;
+  display: flex; 
+  flex-direction: row;
+  margin-bottom: 2px; 
+  align-items: center;
+  
+  @media (max-width: 970px) {
+  align-items: flex-start;
+    flex-direction: column;
+	}
 `;
 export const InputTitle = styled.div`
-  font-size: 20px;color: #363636;
+  font-size: 20px;color: #363636;margin-right: 5px;
 `;
 
 export const InputSubtitle = styled.div`
-  font-size: 15px; color: #A9A9A9; margin-left: 5px;
+  font-size: 13px;
+  color: #A9A9A9;
+  @media (max-width: 600px) {
+  align-items: flex-start;
+    font-size: 12px; 
+	}
+  
 `;
 
 const SelectStyled = styled(Select)`
-  border: !this.state.errors.type ? solid 1.5px #C9C9C9 : solid 1.5px #FF3D37;
-  border-radius: 0px;
-  width: 455px;
+  border-radius: 0px;  
+  border: ${props => (props.error[props.field] ? 'solid 1.5px #FF3D37' : 'solid 1.5px #C9C9C9')};    
+  width: 36vw;
   font-size: 20px;
+  @media (max-width: 600px) {
+		width:73vw;
+	}
 `;
 
 export const Error = styled.div`
@@ -281,7 +307,11 @@ export const Error = styled.div`
 `;
 
 const CheckboxContainer = styled.div`
+  width:37vw;
   margin-top:25px;
+    @media (max-width: 600px) {
+		width:73vw;
+	}
 `;
 
 const RegistrationButton = styled.button`
@@ -291,4 +321,7 @@ const RegistrationButton = styled.button`
   background-color: #3DB0E1;
   color: white;
   border: none;
+  &:hover{
+    background-color: #1DA1D9;
+  }
 `;
