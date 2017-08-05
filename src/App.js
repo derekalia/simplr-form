@@ -288,6 +288,7 @@ export const InputSubtitle = styled.div`
   @media (max-width: 600px) {
   align-items: flex-start;
     font-size: 12px; 
+    
 	}
   
 `;
@@ -298,6 +299,7 @@ const SelectStyled = styled(Select)`
   background-color:white;
   width: 36vw;
   font-size: 20px;
+   box-shadow: 0px 2px 8px 0px rgba(205, 202, 202, 0.62);
   @media (max-width: 600px) {
 		width:73vw;
 	}
